@@ -1,3 +1,7 @@
+
+# Created by https://www.gitignore.io/api/c,keil,windows,codeblocks
+
+### C ###
 # Prerequisites
 *.d
 
@@ -50,3 +54,83 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+### CodeBlocks ###
+# specific to CodeBlocks IDE
+*.layout
+*.depend
+
+# generated directories
+bin/
+obj/
+
+### Keil ###
+# something maybe need to add
+# *.bat  # generate batch file
+# output/project_name # uv project generate without file ext
+# *.SRC # generate source file
+# *.src 
+
+# Prerequisites
+*.dep
+# Object files
+*.OBJ
+
+# Listing Files
+*.COD
+*.cod
+*.[Ii]
+*.LST
+*.lst
+*.MAP
+*.[Mm]51
+*.[Mm]66
+*.SCR
+*.scr
+
+# LINK output
+*.ABS
+
+# Libraries
+*.LIB
+
+
+# uv output
+*.lnp
+*.build_log.htm
+*.HEX
+
+
+# Build Files
+*._IA
+*.__[Ii]
+*._[Ii][Ii]
+
+# project
+*.uvgui.*
+*.uvguix.*
+
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+
+# End of https://www.gitignore.io/api/c,keil,windows,codeblocks
