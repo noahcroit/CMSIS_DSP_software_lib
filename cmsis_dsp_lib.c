@@ -48,11 +48,11 @@
   */
 int8_t  CMSIS_DSP_real_FFT_f32_blockInit(rfft_f32_TypeDef *user_RFFT_struct, float32_t *set_tmp1, float32_t *set_tmp2, uint16_t setLength)
 {
-    user_RFFT_struct->length = setLength;
-    user_RFFT_struct->tmpBuffer_1 = set_tmp1;
-    user_RFFT_struct->tmpBuffer_2 = set_tmp2;
+	user_RFFT_struct->length = setLength;
+	user_RFFT_struct->tmpBuffer_1 = set_tmp1;
+	user_RFFT_struct->tmpBuffer_2 = set_tmp2;
 
-    return arm_rfft_fast_init_f32(&(user_RFFT_struct->arm_struct), setLength);
+	return arm_rfft_fast_init_f32(&(user_RFFT_struct->arm_struct), setLength);
 }
 
 
@@ -68,12 +68,12 @@ int8_t  CMSIS_DSP_real_FFT_f32_blockInit(rfft_f32_TypeDef *user_RFFT_struct, flo
   */
 void    CMSIS_DSP_real_FFT_f32_apply(rfft_f32_TypeDef *user_RFFT_struct, float32_t *rDataIn, float32_t *fftOut)
 {
-		memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), rDataIn, (sizeof(float32_t))*(user_RFFT_struct->length));
+	memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), rDataIn, (sizeof(float32_t))*(user_RFFT_struct->length));
 
-		arm_rfft_fast_f32(&(user_RFFT_struct->arm_struct),
-											user_RFFT_struct->tmpBuffer_1,
-											fftOut,
-											REAL_FFT_SELECT_VAL);
+	arm_rfft_fast_f32(	&(user_RFFT_struct->arm_struct),
+				user_RFFT_struct->tmpBuffer_1,
+				fftOut,
+				REAL_FFT_SELECT_VAL);
 }
 
 
@@ -89,12 +89,12 @@ void    CMSIS_DSP_real_FFT_f32_apply(rfft_f32_TypeDef *user_RFFT_struct, float32
   */
 void    CMSIS_DSP_real_IFFT_f32_apply(rfft_f32_TypeDef *user_RFFT_struct, float32_t *fftIn, float32_t *ifftOut)
 {
-    memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), fftIn, sizeof(float32_t)*(user_RFFT_struct->length));
+    	memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), fftIn, sizeof(float32_t)*(user_RFFT_struct->length));
 
-    arm_rfft_fast_f32(&(user_RFFT_struct->arm_struct),
-											user_RFFT_struct->tmpBuffer_1,
-											ifftOut,
-											REAL_IFFT_SELECT_VAL);
+    	arm_rfft_fast_f32(	&(user_RFFT_struct->arm_struct),
+				user_RFFT_struct->tmpBuffer_1,
+				ifftOut,
+				REAL_IFFT_SELECT_VAL);
 }
 
 
@@ -110,16 +110,16 @@ void    CMSIS_DSP_real_IFFT_f32_apply(rfft_f32_TypeDef *user_RFFT_struct, float3
   */
 void    CMSIS_DSP_magnitude_FFT_f32_apply(rfft_f32_TypeDef *user_RFFT_struct, float32_t *rDataIn, float32_t *magFFTOut)
 {
-		memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), rDataIn, (sizeof(float32_t))*(user_RFFT_struct->length));
+	memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), rDataIn, (sizeof(float32_t))*(user_RFFT_struct->length));
 
-		arm_rfft_fast_f32(&(user_RFFT_struct->arm_struct),
-											user_RFFT_struct->tmpBuffer_1,
-											user_RFFT_struct->tmpBuffer_2,
-											REAL_FFT_SELECT_VAL);
+	arm_rfft_fast_f32(	&(user_RFFT_struct->arm_struct),
+				user_RFFT_struct->tmpBuffer_1,
+				user_RFFT_struct->tmpBuffer_2,
+				REAL_FFT_SELECT_VAL);
 
-		arm_cmplx_mag_f32(user_RFFT_struct->tmpBuffer_2,
-											magFFTOut,
-											(user_RFFT_struct->length)/2);
+	arm_cmplx_mag_f32(	user_RFFT_struct->tmpBuffer_2,
+				magFFTOut,
+				(user_RFFT_struct->length)/2);
 }
 
 
@@ -135,16 +135,16 @@ void    CMSIS_DSP_magnitude_FFT_f32_apply(rfft_f32_TypeDef *user_RFFT_struct, fl
   */
 void    CMSIS_DSP_magnitudeSquare_FFT_f32_apply(rfft_f32_TypeDef *user_RFFT_struct, float32_t *rDataIn, float32_t *magSqFFTOut)
 {
-		memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), rDataIn, (sizeof(float32_t))*(user_RFFT_struct->length));
+	memcpy((void*)((uint8_t*)user_RFFT_struct->tmpBuffer_1), rDataIn, (sizeof(float32_t))*(user_RFFT_struct->length));
 
-		arm_rfft_fast_f32(&(user_RFFT_struct->arm_struct),
-											user_RFFT_struct->tmpBuffer_1,
-											user_RFFT_struct->tmpBuffer_2,
-											REAL_FFT_SELECT_VAL);
+	arm_rfft_fast_f32(	&(user_RFFT_struct->arm_struct),
+				user_RFFT_struct->tmpBuffer_1,
+				user_RFFT_struct->tmpBuffer_2,
+				REAL_FFT_SELECT_VAL);
 
-		arm_cmplx_mag_squared_f32(user_RFFT_struct->tmpBuffer_2,
-															magSqFFTOut,
-															(user_RFFT_struct->length)/2);
+	arm_cmplx_mag_squared_f32(	user_RFFT_struct->tmpBuffer_2,
+					magSqFFTOut,
+					(user_RFFT_struct->length)/2);
 }
 /********************* DSP block : Fast Fourier Transform (FFT) - end ************************/
 
@@ -155,12 +155,12 @@ void    CMSIS_DSP_magnitudeSquare_FFT_f32_apply(rfft_f32_TypeDef *user_RFFT_stru
 /** DSP Block Description.
   * + Window function
   *     This block is used to generate a window function and apply it to an input data point. After window initialization by using CMSIS_DSP_windowFunction_blockInit()
-  *			,user can window any input data by calling "CMSIS_DSP_windowFunciton_apply()".
+  *	,user can window any input data by calling "CMSIS_DSP_windowFunciton_apply()".
   *
-  *			List of marcro of basic window functions for CMSIS_DSP_windowFunction_blockInit()
-  *			- WINDOW_TYPE_RECTANGULAR
-  *			- WINDOW_TYPE_HANNING
-  *			- WINDOW_TYPE_HAMMING
+  *	List of marcro of basic window functions for CMSIS_DSP_windowFunction_blockInit()
+  *	- WINDOW_TYPE_RECTANGULAR
+  *	- WINDOW_TYPE_HANNING
+  *	- WINDOW_TYPE_HAMMING
   *
   */
 
@@ -220,7 +220,7 @@ void    CMSIS_DSP_windowFunction_blockInit(window_TypeDef *user_w_struct, float3
   */
 void    CMSIS_DSP_windowFunciton_apply(window_TypeDef *user_w_struct, float32_t *pInput, float32_t *pOutput)
 {
-    arm_mult_f32((float32_t *)pInput, (float32_t *)(user_w_struct->value), pOutput, user_w_struct->length);
+    	arm_mult_f32((float32_t *)pInput, (float32_t *)(user_w_struct->value), pOutput, user_w_struct->length);
 }
 /*************************** DSP block : Window functions - end ******************************/
 
@@ -232,14 +232,14 @@ void    CMSIS_DSP_windowFunciton_apply(window_TypeDef *user_w_struct, float32_t 
   * + FIR filter
   *     This block is used to generate and apply a  Finite Impulse Response (FIR) filter to input data point.
   *
-  *  		Algorithm:
-  *		  The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations. Each filter coefficient b[n] is multiplied by a state variable which equals a previous input sample x[n].
+  *  	Algorithm:
+  *	The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations. Each filter coefficient b[n] is multiplied by a state variable which equals a previous input sample x[n].
   *
-  *  		y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
+  *  	y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
   *
-  * 		Note about format of coefficient (pCoeff) and state (pState):
-  *			- pCoeff points to the array of filter coefficients stored in time reversed order -> 	{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-  *			- pState points to the array of state variables. pState is of length numTaps+blockSize-1 samples
+  * 	Note about format of coefficient (pCoeff) and state (pState):
+  *	- pCoeff points to the array of filter coefficients stored in time reversed order -> 	{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
+  *	- pState points to the array of state variables. pState is of length numTaps+blockSize-1 samples
   *
   */
 
@@ -254,17 +254,17 @@ void    CMSIS_DSP_windowFunciton_apply(window_TypeDef *user_w_struct, float32_t 
   */
 void CMSIS_DSP_FIR_f32_blockInit(fir_f32_TypeDef *user_FIR_struct, float32_t *set_pCoeff, float32_t *set_pState, float32_t *set_tmp, uint16_t setNumTap, uint32_t setBlockSize)
 {
-        user_FIR_struct->numTap 	 = setNumTap;
-        user_FIR_struct->blockSize = setBlockSize;
-        user_FIR_struct->pCoeff 	 = set_pCoeff;
-        user_FIR_struct->pState 	 = set_pState;
-        user_FIR_struct->tmpBuffer = set_tmp;
+        user_FIR_struct->numTap 	= setNumTap;
+        user_FIR_struct->blockSize 	= setBlockSize;
+        user_FIR_struct->pCoeff 	= set_pCoeff;
+        user_FIR_struct->pState 	= set_pState;
+        user_FIR_struct->tmpBuffer	= set_tmp;
 
-        arm_fir_init_f32	(		&(user_FIR_struct->arm_struct),
-                                    setNumTap,
-                                    set_pCoeff,
-                                    set_pState,
-                                    setBlockSize
+        arm_fir_init_f32(	&(user_FIR_struct->arm_struct),
+                         	setNumTap,
+                         	set_pCoeff,
+                          	set_pState,
+                           	setBlockSize
                             );
 }
 
@@ -281,7 +281,7 @@ void CMSIS_DSP_FIR_f32_apply(fir_f32_TypeDef *user_FIR_struct, float32_t *pInput
 {
         memcpy((void*)((uint8_t*)user_FIR_struct->tmpBuffer), pInput, (sizeof(float32_t))*(user_FIR_struct->blockSize));
 
-        arm_fir_f32	(	&(user_FIR_struct->arm_struct),
+        arm_fir_f32(	&(user_FIR_struct->arm_struct),
                         user_FIR_struct->tmpBuffer,
                         pOutput,
                         user_FIR_struct->blockSize
