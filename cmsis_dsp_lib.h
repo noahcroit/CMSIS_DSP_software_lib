@@ -35,16 +35,16 @@
 #endif
 
 /**************************** FFT & IFFT section - start *****************************/
-#define		REAL_FFT_SIZE_DEFAULT			 512
-#define   REAL_FFT_SIZE              REAL_FFT_SIZE_DEFAULT
-#define 	REAL_MAG_FFT_SIZE					 REAL_FFT_SIZE/2
+#define		REAL_FFT_SIZE_DEFAULT		512
+#define   	REAL_FFT_SIZE              	REAL_FFT_SIZE_DEFAULT
+#define 	REAL_MAG_FFT_SIZE		REAL_FFT_SIZE/2
 
 typedef struct
 {
-    arm_rfft_fast_instance_f32 		arm_struct;
-    uint16_t  						length;         //rfft size
-    float32_t					    *tmpBuffer_1;	//any pointer of temporary buffer which is used in FFT and IFFT calculation. 					 Size of buffer must equal to rFFT size
-    float32_t					    *tmpBuffer_2;	//any pointer of temporary buffer which is used in FFT and IFFT magnitude calculation. Size of buffer must equal to rFFT size
+    arm_rfft_fast_instance_f32 	arm_struct;
+    uint16_t  			length;         //rfft size
+    float32_t			*tmpBuffer_1;	//any pointer of temporary buffer which is used in FFT and IFFT calculation. 					 Size of buffer must equal to rFFT size
+    float32_t			*tmpBuffer_2;	//any pointer of temporary buffer which is used in FFT and IFFT magnitude calculation. Size of buffer must equal to rFFT size
 
 }rfft_f32_TypeDef;
 
@@ -56,26 +56,26 @@ typedef enum
 }rfft_functionSelectFlag;
 
 /* function prototype */
-int8_t  CMSIS_DSP_real_FFT_f32_blockInit	        (rfft_f32_TypeDef *realFFT_struct,
-                                                    float32_t *set_tmp1,
-                                                    float32_t *set_tmp2,
-                                                    uint16_t setLength);
+int8_t  CMSIS_DSP_real_FFT_f32_blockInit	(rfft_f32_TypeDef *realFFT_struct,
+                                              	float32_t *set_tmp1,
+                                             	float32_t *set_tmp2,
+                                              	uint16_t setLength);
 
-void    CMSIS_DSP_real_FFT_f32_apply				(rfft_f32_TypeDef *user_RFFT_struct,
-                                                    float32_t *rDataIn,
-                                                    float32_t *fftOut);
+void    CMSIS_DSP_real_FFT_f32_apply		(rfft_f32_TypeDef *user_RFFT_struct,
+                                              	float32_t *rDataIn,
+                                              	float32_t *fftOut);
 
-void    CMSIS_DSP_real_IFFT_f32_apply				(rfft_f32_TypeDef *user_RFFT_struct,
-                                                    float32_t *fftIn,
-                                                    float32_t *ifftOut);
+void    CMSIS_DSP_real_IFFT_f32_apply		(rfft_f32_TypeDef *user_RFFT_struct,
+                                           	float32_t *fftIn,
+                                           	float32_t *ifftOut);
 
-void    CMSIS_DSP_magnitude_FFT_f32_apply			(rfft_f32_TypeDef *realFFT_struct,
-                                                    float32_t *rDataIn,
-                                                    float32_t *magFFTOut);
+void    CMSIS_DSP_magnitude_FFT_f32_apply	(rfft_f32_TypeDef *realFFT_struct,
+                                              	float32_t *rDataIn,
+                                               	float32_t *magFFTOut);
 
-void    CMSIS_DSP_magnitudeSquare_FFT_f32_apply		(rfft_f32_TypeDef *realFFT_struct,
-                                                    float32_t *rDataIn,
-                                                    float32_t *magSqFFTOut);
+void    CMSIS_DSP_magnitudeSquare_FFT_f32_apply	(rfft_f32_TypeDef *realFFT_struct,
+                                              	float32_t *rDataIn,
+                                              	float32_t *magSqFFTOut);
 
 /****************************  FFT & IFFT section - end  *****************************/
 
@@ -93,21 +93,21 @@ typedef struct
 
 typedef enum
 {
-		WINDOW_TYPE_RECTANGULAR = 0,
-		WINDOW_TYPE_HANNING,
-		WINDOW_TYPE_HAMMING
+	WINDOW_TYPE_RECTANGULAR = 0,
+	WINDOW_TYPE_HANNING,
+	WINDOW_TYPE_HAMMING
 
 }windowFunctionTypeList;
 
 /* function prototype */
 void    CMSIS_DSP_windowFunction_blockInit	(window_TypeDef *w,
-                                            float32_t *set_valueBuf,
-                                            uint8_t setWindowType,
-                                            uint16_t setLength);
+                                            	float32_t *set_valueBuf,
+                                           	uint8_t setWindowType,
+                                            	uint16_t setLength);
 
 void    CMSIS_DSP_windowFunciton_apply		(window_TypeDef *w,
-                                            float32_t *pInput,
-                                            float32_t *pOutput);
+                                            	float32_t *pInput,
+                                            	float32_t *pOutput);
 
 /****************************  Window functions section - end  ****************************/
 
@@ -116,26 +116,26 @@ void    CMSIS_DSP_windowFunciton_apply		(window_TypeDef *w,
 /********************************* FIR filter section - start *********************************/
 typedef struct
 {
-        arm_fir_instance_f32        arm_struct;
-		uint16_t 					numTap;			//number of filter's tap
-        float32_t					*pCoeff;		//any pointer of floating-point array which is used to store filter coefficient
-        float32_t   				*pState;		//any pointer of floating-point array which is used to store filter's state
-		float32_t					*tmpBuffer;	//any pointer of temporary buffer which is used in FIR filter calculation.
-		uint16_t					blockSize;  //number of samples that are processed per call
+        arm_fir_instance_f32	arm_struct;
+	uint16_t 		numTap;		//number of filter's tap
+        float32_t		*pCoeff;	//any pointer of floating-point array which is used to store filter coefficient
+        float32_t   		*pState;	//any pointer of floating-point array which is used to store filter's state
+	float32_t		*tmpBuffer;	//any pointer of temporary buffer which is used in FIR filter calculation.
+	uint16_t		blockSize;  	//number of samples that are processed per call
 
 }fir_f32_TypeDef;
 
 /* function prototype */
-void		CMSIS_DSP_FIR_f32_blockInit		(fir_f32_TypeDef *user_FIR_struct,
-                                            float32_t *set_pCoeff,
-                                            float32_t *set_pState,
-                                            float32_t *set_tmp,
-                                            uint16_t 	setNumTap,
-                                            uint32_t 	setBlockSize);
+void	CMSIS_DSP_FIR_f32_blockInit	(fir_f32_TypeDef *user_FIR_struct,
+                                   	float32_t *set_pCoeff,
+                                   	float32_t *set_pState,
+                                   	float32_t *set_tmp,
+                                    	uint16_t setNumTap,
+                                    	uint32_t setBlockSize);
 
-void		CMSIS_DSP_FIR_f32_apply			(fir_f32_TypeDef *user_FIR_struct,
-                                            float32_t *pInput,
-                                            float32_t *pOutput);
+void	CMSIS_DSP_FIR_f32_apply		(fir_f32_TypeDef *user_FIR_struct,
+                               		float32_t *pInput,
+                               		float32_t *pOutput);
 
 /********************************* FIR filter section - end *********************************/
 
